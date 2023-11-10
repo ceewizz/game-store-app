@@ -21,14 +21,23 @@ body {
 }
 .gallery-item {
     text-align: center;
-    /* margin: 0 auto; */
+    margin-top: 1rem;
 }
 .gallery-item img {
-    max-width: 165px;
+    width: 165px;
     margin: 0.1rem;
-    height: auto;
+    height: 165px;
     border-radius: 5px; 
 }
-.price {
-    margin-top: 5px;
+.savings {
+    text-align: start;
+}
+.prices {
+    display: flex;
+    flex-direction: row;
+}
+.normalPrice {
+    text-decoration: line-through;
+    margin-left: 5px;
+    color: gray;
 }
