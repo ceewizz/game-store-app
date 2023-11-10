@@ -1,0 +1,89 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+}
+
+#filter-container {
+  outline: 7px solid lightgrey;
+  border-bottom-left-radius: 20px;
+  border-bottom-right-radius: 20px;
+  background-color: rgb(158, 158, 158);
+  display: flex;
+  padding: 0.5rem;
+  width: 100%;
+  justify-content: space-around;
+}
+
+#filter-container > span {
+  /* outline: 2px solid blue; */
+  display: flex;
+  width: 95%;
+}
+
+#filter-container > span > label {
+  align-self: center;
+}
+
+#filter-container > span > #filterRequest {
+  /* outline: 2px solid red; */
+  flex: 1 1 auto;
+  border-radius: 10px;
+  height: 3rem;
+  margin: 0 1rem;
+}
+
+#filter-container > span > #filterRequest:focus {
+  box-shadow: 0 0 20px 15px rgb(144, 211, 238);
+}
+
+#filter-container > span > button {
+  width: 50px;
+}
+
+.card-container {
+  /* outline: 2px solid lightsteelblue; */
+  display: grid;
+  width: 80%;
+  margin: 1rem auto;
+  gap: 1rem;
+  grid-template-columns: repeat(2, 1fr);
+  /* grid-template-rows: repeat(2, 1fr); */
+  grid-template-areas: "L R";
+}
+
+.card {
+  outline: 2px solid pink;
+  border-radius: 20px;
+  width: 100%;
+}
+
+.cardL {
+  grid-area: L;
+}
+
+.cardR {
+  grid-area: R;
+}
+
+#nav-container {
+  outline: 2px solid lightgreen;
+  position: fixed;
+  width: 100%;
+  bottom: 0;
+
+  /* To make the container full-width */
+  /* left: 0;
+  right: 0; */
+}
+
+/* For bigger screens */
+@media screen and (min-width: 768px) {
+
+}
