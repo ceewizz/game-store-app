@@ -2,6 +2,16 @@ let requestOptions = {
     method: 'GET',
     redirect: 'follow'
 };
+// Initialize favorites array to be able to later store steam ID's.
+let storedFavorites = localStorage.getItem('favorites');
+let favorites;
+if (!storedFavorites || storedFavorites === "null") {
+    favorites = [];
+} else {
+    favorites = JSON.parse(storedFavorites);
+}
+console.log(favorites);
+
   
 fetch("https://www.cheapshark.com/api/1.0/deals?storeID=1&upperPrice=1", requestOptions)
     .then((response) => response.json())
@@ -38,13 +48,14 @@ fetch("https://www.cheapshark.com/api/1.0/deals?storeID=1&upperPrice=1", request
 
             // Create gallery item HTML string. Need to include cheapshark redirect link as a condition for free usage.
             let galleryItemHtml = `
-                <div class="gallery-item">
+                <div class="gallery-item" data-steamid="${item.steamAppID}">
                     <div class="image-container">
                         <img src="${item.thumb}" alt="${item.title}" onerror="missingImage(this)">
                         <div class="overlay">
                             <div class="overlay-content">
                                 <p>${item.title}</p>
                                 <a href="https://www.metacritic.com${item.metacriticLink}">Metacritic: ${item.metacriticScore}</a>
+                                <p>Steam rating: ${item.steamRatingPercent}</p>
                                 <p>Deal rating: ${item.dealRating}</p>
                                 <a href="https://www.cheapshark.com/redirect?dealID=${item.dealID}">See the deal!</a>
                             </div>
@@ -92,6 +103,13 @@ fetch("https://www.cheapshark.com/api/1.0/deals?storeID=1&upperPrice=1", request
 $('.gallery').on('click', '.heart', function(event) {
     event.stopPropagation();
     $(this).toggleClass('red-heart');
+    // Use all lowercase for data attributes. This is becauese JS/jQuery will access attribute and convert to lower case.
+    let steamID = $(this).closest('.gallery-item').data('steamid');
+    if (!favorites.includes(steamID)) {
+        favorites.push(steamID);
+        localStorage.setItem('favorites', JSON.stringify(favorites));
+    }
+    console.log(steamID);
 });
 
 $(window).on('load', function() {
@@ -99,6 +117,14 @@ $(window).on('load', function() {
         // Check HTML image element properties.
         if (!this.complete || typeof this.naturalWidth == "undefined" || this.naturalWidth == 0) {
             this.src = './assets/images/missing.png'; 
+        }
+    });
+    // After all is done loading, access stored steam ID's to be able to determine favorites.
+    let favorites = JSON.parse(localStorage.getItem('favorites')) || [];
+    $('.gallery-item').each(function() {
+        let steamID = $(this).data('steamid');
+        if (favorites.includes(steamID)) {
+            $(this).find('.heart').addClass('red-heart');
         }
     });
 });
