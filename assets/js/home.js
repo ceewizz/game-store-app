@@ -39,9 +39,17 @@ fetch("https://www.cheapshark.com/api/1.0/deals?storeID=1&upperPrice=1", request
             // Create gallery item HTML string. Need to include cheapshark redirect link as a condition for free usage.
             let galleryItemHtml = `
                 <div class="gallery-item">
-                    <a href="https://www.cheapshark.com/redirect?dealID=${item.dealID}">
+                    <div class="image-container">
                         <img src="${item.thumb}" alt="${item.title}" onerror="missingImage(this)">
-                    </a>
+                        <div class="overlay">
+                            <div class="overlay-content">
+                                <p>${item.title}</p>
+                                <a href="https://www.metacritic.com${item.metacriticLink}">Metacritic: ${item.metacriticScore}</a>
+                                <p>Deal rating: ${item.dealRating}</p>
+                                <a href="https://www.cheapshark.com/redirect?dealID=${item.dealID}">See the deal!</a>
+                            </div>
+                        </div>
+                    </div>
                     <div class="savings">-${percentage}%</div>
                     <div class="prices">
                         <div class="salePrice">$${item.salePrice}</div>
@@ -50,7 +58,19 @@ fetch("https://www.cheapshark.com/api/1.0/deals?storeID=1&upperPrice=1", request
                 </div>
             `;
             let sanitizedItem = DOMPurify.sanitize(galleryItemHtml);
+            // Add event delegation to each image container to hide and show. 
+            $('.image-container').on('click', function() {
+                $(this).find('.overlay').show();
 
+                $(this).find('.overlay a').each(function() {
+                    $(this).attr('target', '_blank');
+                    $(this).attr('rel', 'noopener');
+                });
+            });
+            $('.overlay').on('click', function(event) {
+                event.stopPropagation();
+                $(this).hide();
+            });
             // Append the new gallery item to the gallery
             $('.gallery').append(sanitizedItem);
         });
@@ -59,9 +79,15 @@ fetch("https://www.cheapshark.com/api/1.0/deals?storeID=1&upperPrice=1", request
         console.log('error', error);
     });
 
+// Add event listeners to each gallery item
+$('.gallery').on('click', '.gallery-item img', function() {
+    let siblingDivContent = $(this).siblings('div').text();
+    console.log(siblingDivContent);
+});
+
 $(window).on('load', function() {
     $('img').each(function() {
-        // Check HTML element properties.
+        // Check HTML image element properties.
         if (!this.complete || typeof this.naturalWidth == "undefined" || this.naturalWidth == 0) {
             this.src = './assets/images/missing.png'; 
         }
