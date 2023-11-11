@@ -51,6 +51,22 @@ body {
     height: 165px;
     border-radius: 5px; 
 }
+.item-footer {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+.heart {
+    /* color: red; */
+    color: lightslategray;
+    margin-right: 1rem;
+    cursor: pointer;
+    font-size: 2rem;
+}
+.red-heart {
+    color: red;
+}
 .savings {
     text-align: start;
 }

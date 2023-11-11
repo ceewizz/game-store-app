@@ -50,10 +50,17 @@ fetch("https://www.cheapshark.com/api/1.0/deals?storeID=1&upperPrice=1", request
                             </div>
                         </div>
                     </div>
-                    <div class="savings">-${percentage}%</div>
-                    <div class="prices">
-                        <div class="salePrice">$${item.salePrice}</div>
-                        <div class="normalPrice">$${item.normalPrice}</div>
+                    <div class="item-footer">
+                        <div class="game-details">
+                            <div class="savings">-${percentage}%</div>
+                            <div class="prices">
+                                <div class="salePrice">$${item.salePrice}</div>
+                                <div class="normalPrice">$${item.normalPrice}</div>
+                            </div>
+                        </div>
+                        <div class="heart">
+                            &#9829;
+                        </div>
                     </div>
                 </div>
             `;
@@ -66,7 +73,9 @@ fetch("https://www.cheapshark.com/api/1.0/deals?storeID=1&upperPrice=1", request
                     $(this).attr('target', '_blank');
                     $(this).attr('rel', 'noopener');
                 });
+
             });
+
             $('.overlay').on('click', function(event) {
                 event.stopPropagation();
                 $(this).hide();
@@ -80,9 +89,9 @@ fetch("https://www.cheapshark.com/api/1.0/deals?storeID=1&upperPrice=1", request
     });
 
 // Add event listeners to each gallery item
-$('.gallery').on('click', '.gallery-item img', function() {
-    let siblingDivContent = $(this).siblings('div').text();
-    console.log(siblingDivContent);
+$('.gallery').on('click', '.heart', function(event) {
+    event.stopPropagation();
+    $(this).toggleClass('red-heart');
 });
 
 $(window).on('load', function() {
