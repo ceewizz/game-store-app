@@ -13,7 +13,7 @@ if (!storedFavorites || storedFavorites === "null") {
 console.log(favorites);
 
   
-fetch("https://www.cheapshark.com/api/1.0/deals?storeID=1&upperPrice=1", requestOptions)
+fetch("https://www.cheapshark.com/api/1.0/deals?storeID=1&AAA=1&sortBy=Metacritic&desc=0&onSale=1", requestOptions)
     .then((response) => response.json())
     .then((data) => {
         console.log(data);
