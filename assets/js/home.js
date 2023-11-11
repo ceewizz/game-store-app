@@ -8,6 +8,8 @@ fetch("https://www.cheapshark.com/api/1.0/deals?storeID=1&upperPrice=1", request
     .then((data) => {
         console.log(data);
         data.forEach((item) => {
+            // Save to local storage
+            localStorage.setItem('dealsData', JSON.stringify(data));
             // Data
             console.log('Deal ID: ' + item.dealID);
             console.log('Deal Rating: ' + item.dealRating);
