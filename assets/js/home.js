@@ -36,10 +36,12 @@ fetch("https://www.cheapshark.com/api/1.0/deals?storeID=1&upperPrice=1", request
             // Modify savings to not show any decimals
             let percentage = Math.round(parseFloat(item.savings))
 
-            // Create gallery item HTML string
+            // Create gallery item HTML string. Need to include cheapshark redirect link as a condition for free usage.
             let galleryItemHtml = `
                 <div class="gallery-item">
-                    <img src="${item.thumb}" alt="${item.title}" onerror="missingImage(this)">
+                    <a href="https://www.cheapshark.com/redirect?dealID=${item.dealID}">
+                        <img src="${item.thumb}" alt="${item.title}" onerror="missingImage(this)">
+                    </a>
                     <div class="savings">-${percentage}%</div>
                     <div class="prices">
                         <div class="salePrice">$${item.salePrice}</div>
