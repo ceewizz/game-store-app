@@ -105,11 +105,13 @@ $('.gallery').on('click', '.heart', function(event) {
     $(this).toggleClass('red-heart');
     // Use all lowercase for data attributes. This is becauese JS/jQuery will access attribute and convert to lower case.
     let steamID = $(this).closest('.gallery-item').data('steamid');
-    if (!favorites.includes(steamID)) {
+    let index = favorites.indexOf(steamID);
+    if (index === -1) {
         favorites.push(steamID);
-        localStorage.setItem('favorites', JSON.stringify(favorites));
+    } else {
+        favorites.splice(index, 1);
     }
-    console.log(steamID);
+    localStorage.setItem('favorites', JSON.stringify(favorites));
 });
 
 $(window).on('load', function() {
