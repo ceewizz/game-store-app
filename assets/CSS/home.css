@@ -1,0 +1,81 @@
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    /* height: 100vh; */
+    display: flex;
+    flex-direction: column;
+    background-color: rgb(241, 241, 241);
+    justify-content: space-around;
+    /* align-items: center; */
+}
+.gallery {
+    display: flex;
+    flex-wrap: wrap;
+    /* justify-content: center; */
+    justify-content: space-around;
+    /* padding: 5px; */
+    min-width: 280px;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 1.25rem;
+}
+.gallery-item {
+    text-align: center;
+    margin-top: 1rem;
+}
+
+.image-container {
+    position: relative;
+}
+
+.overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7); 
+    border-radius: 5px; 
+    display: none; 
+    justify-content: center;
+    align-items: center;
+}
+
+.overlay-content {
+    color: white;
+    text-align: center;
+}
+
+.gallery-item img {
+    width: 165px;
+    height: 165px;
+    border-radius: 5px; 
+}
+.item-footer {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+.heart {
+    /* color: red; */
+    color: lightslategray;
+    margin-right: 1rem;
+    cursor: pointer;
+    font-size: 2rem;
+}
+.red-heart {
+    color: red;
+}
+.savings {
+    text-align: start;
+}
+.prices {
+    display: flex;
+    flex-direction: row;
+}
+.normalPrice {
+    text-decoration: line-through;
+    margin-left: 5px;
+    color: gray;
+}
