@@ -11,7 +11,7 @@ class GalleryItem {
       this.dealID = objectInArray.deals[0].dealID;
       this.price = objectInArray.deals[0].price;
       this.retailPrice = objectInArray.deals[0].retailPrice;
-      this.savings = objectInArray.deals[0].savings;
+      this.savings = Math.round(parseFloat(objectInArray.deals[0].savings));
 
 /*       this.steamAppID = objectInArray.steamAppID;
       this.thumb = objectInArray.thumb;
@@ -46,8 +46,8 @@ class GalleryItem {
                 <div class="game-details">
                     <div class="savings">-${this.savings}%</div>
                     <div class="prices">
-                        <div class="salePrice">$${this.salePrice}</div>
-                        <div class="normalPrice">$${this.normalPrice}</div>
+                        <div class="salePrice">$${this.price}</div>
+                        <div class="normalPrice">$${this.retailPrice}</div>
                     </div>
                 </div>
                 <div class="heart">
@@ -121,6 +121,7 @@ fetch("https://www.cheapshark.com/api/1.0/games?ids=" + testIdList, requestOptio
   let wishlistGameArr = [];
   let wishlistIndex = -1;
 
+  // Turning the data object into an array.
   for (let i = 0; i < Object.keys(data).length; i++) {
     let wishlistGameObj = {};
     wishlistIndex = testIdList[i];
@@ -133,22 +134,12 @@ fetch("https://www.cheapshark.com/api/1.0/games?ids=" + testIdList, requestOptio
   wishlistGameArr.forEach(objectInArray => {
     let galleryItem = new GalleryItem(objectInArray);
     // console.log(galleryItem);
-    let galleryItemHtml = galleryItem.generateHtml()
-    // console.log(galleryItemHtml);
-    let galleryItemHtmlClean = DOMPurify.sanitize(galleryItemHtml)
-    // console.log(galleryItemHtmlClean);
-    $('.gallery').append(galleryItemHtmlClean);
-  });
-
-/*   data.forEach(storeIdEl => {
-    let galleryItem = new GalleryItem(storeIdEl);
-    // console.log(galleryItem);
     let galleryItemHtml = galleryItem.generateHtml();
     // console.log(galleryItemHtml);
     let galleryItemHtmlClean = DOMPurify.sanitize(galleryItemHtml);
     // console.log(galleryItemHtmlClean);
     $('.gallery').append(galleryItemHtmlClean);
-  }) */
+  });
 
   // localStorage.setItem('dealsData', JSON.stringify(data));
 /*   data.forEach(objectInArray => {
