@@ -200,7 +200,7 @@ $('.gallery').on('click', '.heart', function(event) {
 
 });
 
-// Check for broken links (HTML image elements) and display favoite games as "hearted".
+// Check for broken links (HTML image elements) and display favorite games as "hearted".
 $(window).on('load', function() {
   $('img').each(function() {
       if (!this.complete || typeof this.naturalWidth == "undefined" || this.naturalWidth == 0) {
