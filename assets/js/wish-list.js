@@ -39,7 +39,7 @@ class GalleryItem {
                             <div class="normalPrice">$${this.retailPrice}</div>
                         </div>
                     </div>
-                    <div class="heart">
+                    <div class="heart red-heart">
                         &#9829;
                     </div>
                 </div>
@@ -65,7 +65,7 @@ let gameIds = storedGameIds && storedGameIds !== "null" ? JSON.parse(storedGameI
 fetch("https://www.cheapshark.com/api/1.0/games?ids=" + gameIds, requestOptions)
   .then(response => response.json())
   .then(data => {
-    console.log(data);
+    // console.log(data);
   
     let wishlistGameArr = [];
     let wishlistIndex = -1;
@@ -84,7 +84,7 @@ fetch("https://www.cheapshark.com/api/1.0/games?ids=" + gameIds, requestOptions)
     //   objectInArray.gameID = wishlistIndex;  ////////////////////
 
       let galleryItem = new GalleryItem(objectInArray);
-      console.log(galleryItem);
+    //   console.log(galleryItem);
       let galleryItemHtml = galleryItem.generateHtml();
       // console.log(galleryItemHtml);
       let galleryItemHtmlClean = DOMPurify.sanitize(galleryItemHtml);
@@ -143,17 +143,13 @@ $(window).on('load', function() {
       }
   });
 
-
-
-
-////////////////////////
-//   let favorites = JSON.parse(localStorage.getItem('favorites')) || [];
+/*   let favorites = JSON.parse(localStorage.getItem('favorites')) || [];
   $('.gallery-item').each(function() {
     $(this).find('.heart').addClass('red-heart');
 
-/*       let steamID = $(this).data('steamid');
+      let steamID = $(this).data('steamid');
       if (favorites.includes(steamID)) {
           $(this).find('.heart').addClass('red-heart');
-      } */
-  });
+      }
+  }); */
 });
