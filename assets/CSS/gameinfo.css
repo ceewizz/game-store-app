@@ -19,11 +19,14 @@ body {
     background: #13293d;
     color: #fff;
   }
-  h1, h2, h3, h4 {
+  h1, h2, h3, h4, main, div, button, ul, li, nav, section {
+    background-color: black;
     display:flexbox;
     justify-content:space-evenly;
     align-items:center;
     flex-wrap:wrap;
     color:aquamarine;
   }
- 
+ @media only screen and (max-width: 800px) {
+  
+ }
