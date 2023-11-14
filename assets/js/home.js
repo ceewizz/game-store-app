@@ -72,46 +72,45 @@ fetch("https://www.cheapshark.com/api/1.0/deals?storeID=1&sortBy=Metacritic&desc
             // console.log(galleryItemHtmlClean);
             $('.gallery').append(galleryItemHtmlClean);
         });
+        // Event delegation for dynamic content.
+        // Overlay and links (Need to keep referer to comply with cheapshark API). Due to sanitizing, HTML attributes are added until this stage.
+        $('.gallery').on('click', '.image-container', function() {
+            $(this).find('.overlay').show();
+            $(this).find('.overlay a').attr({
+                'target': '_blank',
+                'rel': 'noopener'
+            });
+        });
+        $('.gallery').on('click', '.overlay', function(event) {
+            event.stopPropagation();
+            $(this).hide();
+        });
+        // Adding and removing favorites as well as updating game id for wishlist.
+        $('.gallery').on('click', '.heart', function(event) {
+            event.stopPropagation();
+            $(this).toggleClass('red-heart');
+            let steamID = $(this).closest('.gallery-item').data('steamid');
+            let index = favorites.indexOf(steamID);
+            if (index === -1) {
+                favorites.push(steamID);
+            } else {
+                favorites.splice(index, 1);
+            }
+            localStorage.setItem('favorites', JSON.stringify(favorites));
+            // Game ID's
+            let gameID = $(this).closest('.gallery-item').data('gameid');
+            let indexGameId = gameIds.indexOf(gameID);
+            if (indexGameId === -1) {
+                gameIds.push(gameID);
+            } else {
+                gameIds.splice(index, 1);
+            }
+            localStorage.setItem('gameids', JSON.stringify(gameIds));
+        });
     })
     .catch(error => {
         console.log('error', error);
     });
-
-// Event delegation for dynamic content.
-// Overlay and links (Need to keep referer to comply with cheapshark API). Due to sanitizing, HTML attributes are added until this stage.
-$('.gallery').on('click', '.image-container', function() {
-    $(this).find('.overlay').show();
-    $(this).find('.overlay a').attr({
-        'target': '_blank',
-        'rel': 'noopener'
-    });
-});
-$('.gallery').on('click', '.overlay', function(event) {
-    event.stopPropagation();
-    $(this).hide();
-});
-// Adding and removing favorites as well as updating game id for wishlist.
-$('.gallery').on('click', '.heart', function(event) {
-    event.stopPropagation();
-    $(this).toggleClass('red-heart');
-    let steamID = $(this).closest('.gallery-item').data('steamid');
-    let index = favorites.indexOf(steamID);
-    if (index === -1) {
-        favorites.push(steamID);
-    } else {
-        favorites.splice(index, 1);
-    }
-    localStorage.setItem('favorites', JSON.stringify(favorites));
-    // Game ID's
-    let gameID = $(this).closest('.gallery-item').data('gameid');
-    let indexGameId = gameIds.indexOf(gameID);
-    if (indexGameId === -1) {
-        gameIds.push(gameID);
-    } else {
-        gameIds.splice(index, 1);
-    }
-    localStorage.setItem('gameids', JSON.stringify(gameIds));
-});
 // Check for broken links (HTML image elements) and display favoite games as "hearted".
 $(window).on('load', function() {
     $('img').each(function() {
