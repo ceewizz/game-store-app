@@ -5,6 +5,7 @@
 class GalleryItem {
   // Define properties for each instance.
   constructor(objectInArray) {
+      this.gameID = objectInArray.info.gameID;
       this.steamAppID = objectInArray.info.steamAppID;
       this.thumb = objectInArray.info.thumb;
       this.title = objectInArray.info.title;
@@ -38,7 +39,7 @@ class GalleryItem {
                             <div class="normalPrice">$${this.retailPrice}</div>
                         </div>
                     </div>
-                    <div class="heart">
+                    <div class="heart red-heart">
                         &#9829;
                     </div>
                 </div>
@@ -74,17 +75,20 @@ fetch("https://www.cheapshark.com/api/1.0/games?ids=" + gameIds, requestOptions)
       let wishlistGameObj = {};
       wishlistIndex = gameIds[i];
       Object.assign(wishlistGameObj, data[wishlistIndex]);
+      wishlistGameObj.info.gameID = wishlistIndex;
       wishlistGameArr.push(wishlistGameObj);
     }
     // console.log(wishlistGameArr);
 
     wishlistGameArr.forEach(objectInArray => {
+    //   objectInArray.gameID = wishlistIndex;  ////////////////////
+
       let galleryItem = new GalleryItem(objectInArray);
-      // console.log(galleryItem);
+    //   console.log(galleryItem);
       let galleryItemHtml = galleryItem.generateHtml();
       // console.log(galleryItemHtml);
       let galleryItemHtmlClean = DOMPurify.sanitize(galleryItemHtml);
-      // console.log(galleryItemHtmlClean);
+    //   console.log(galleryItemHtmlClean);
       $('.gallery').append(galleryItemHtmlClean);
     });
 
@@ -131,45 +135,6 @@ fetch("https://www.cheapshark.com/api/1.0/games?ids=" + gameIds, requestOptions)
     console.log('error', error);
 });
 
-/* // Event delegation for dynamic content.
-// Overlay and links (Need to keep referer to comply with cheapshark API). Due to sanitizing, HTML attributes are added until this stage.
-$('.gallery').on('click', '.image-container', function() {
-  $(this).find('.overlay').show();
-  $(this).find('.overlay a').attr({
-      'target': '_blank',
-      'rel': 'noopener'
-  });
-});
-
-$('.gallery').on('click', '.overlay', function(event) {
-  event.stopPropagation();
-  $(this).hide();
-});
-
-// Adding and removing favorites.
-$('.gallery').on('click', '.heart', function(event) {
-  event.stopPropagation();
-  $(this).toggleClass('red-heart');
-  let steamID = $(this).closest('.gallery-item').data('steamid');
-  let index = favorites.indexOf(steamID);
-  if (index === -1) {
-      favorites.push(steamID);
-  } else {
-      favorites.splice(index, 1);
-  }
-  localStorage.setItem('favorites', JSON.stringify(favorites));
-
-  // Game ID's
-  let gameID = $(this).closest('.gallery-item').data('gameid');
-  let indexGameId = gameIds.indexOf(gameID);
-  if (indexGameId === -1) {
-    gameIds.push(gameID);
-  } else {
-    gameIds.splice(index, 1);
-  }
-  localStorage.setItem('gameids', JSON.stringify(gameIds));
-}); */
-
 // Check for broken links (HTML image elements) and display favorite games as "hearted".
 $(window).on('load', function() {
   $('img').each(function() {
@@ -177,11 +142,14 @@ $(window).on('load', function() {
           this.src = './assets/images/missing.png';
       }
   });
-  let favorites = JSON.parse(localStorage.getItem('favorites')) || [];
+
+/*   let favorites = JSON.parse(localStorage.getItem('favorites')) || [];
   $('.gallery-item').each(function() {
+    $(this).find('.heart').addClass('red-heart');
+
       let steamID = $(this).data('steamid');
       if (favorites.includes(steamID)) {
           $(this).find('.heart').addClass('red-heart');
       }
-  });
+  }); */
 });
