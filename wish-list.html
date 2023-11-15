@@ -4,48 +4,44 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
+  <title>Wish List</title>
 
-  <link rel="stylesheet" href="assets/css/reset.css">
-  <link rel="stylesheet" href="assets/css/wish-list.css">
+  <link rel="stylesheet" href="./assets/css/reset.css">
+  <link rel="stylesheet" href="./assets/css/home.css">
+  <!-- <link rel="stylesheet" href="assets/css/wish-list.css"> -->
 </head>
 
 <body>
-  <section id="filter">
-    <div id="filter-container">
-      <span>
-        <label for="filterRequest">Filter</label>
-        <input type="search" id="filterRequest" name="filterRequest">
-        <button class="searchBtn"><img src="#" alt="#"></button>
-      </span>
-    </div>
-  </section>
+  <div class="gallery">
+    <!-- Items on sale dynamically generated -->
+  </div>
 
-  <section id="cards">
-    <!-- Dynamically create a new card container whenever more cards are needed -->
-    <!-- Add only "Card L" when an odd number of values are given -->
-    <div class="card-container">
-      <div class="card cardL">
-        Card L
-      </div>
-      <div class="card cardR">
-        Card R
-      </div>
+  <nav class="nav">
+    <div class="nav-bar">
+        <ul>
+            <li class="list">
+                <a href="./index.html">
+                    <span class="icon">
+                        <ion-icon name="home-outline"></ion-icon>
+                    </span>
+                </a>
+            </li> 
+            <li class="wish-list">
+                <a href="./wish-list.html">
+                    <span class="icon">
+                        <ion-icon name="list-outline"></ion-icon>
+                        <!-- <ion-icon name="heart-outline"></ion-icon> -->
+                    </span>
+                </a>
+            </li> 
+        </ul>
     </div>
-    <div class="card-container">
-      <div class="card cardL">
-        Card L
-      </div>
-      <div class="card cardR">
-        Card R
-      </div>
-    </div>
-  </section>
+  </nav>
 
-  <section id="nav">
-    <div id="nav-container">
-      Nav
-    </div>
-  </section>
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+  <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+  <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/dompurify@3.0.6/dist/purify.min.js"></script>
+  <script src="./assets/js/wish-list.js"></script>
 </body>
 </html>
