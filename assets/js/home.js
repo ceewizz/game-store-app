@@ -23,11 +23,11 @@ class GalleryItem {
                     <img src="${this.thumb}" alt="${this.title}" onerror="missingImage(this)">
                     <div class="overlay">
                         <div class="overlay-content">
-                            <p>${this.title}</p>
-                            <a href="https://www.metacritic.com${this.metacriticLink}">Metacritic: ${this.metacriticScore}</a>
-                            <p>Steam rating: ${this.steamRatingPercent}</p>
-                            <p>Deal rating: ${this.dealRating}</p>
-                            <a href="https://www.cheapshark.com/redirect?dealID=${this.dealID}">See the deal!</a>
+                            <p id="game-name">${this.title}</p>
+                            <a id="link1" href="https://www.metacritic.com${this.metacriticLink}">Metacritic: ${this.metacriticScore}</a>
+                            <p id="steam">Steam rating: ${this.steamRatingPercent}</p>
+                            <p id="deal">Deal rating: ${this.dealRating}</p>
+                            <a id="link2" href="https://www.cheapshark.com/redirect?dealID=${this.dealID}">See the deal!</a>
                         </div>
                     </div>
                 </div>

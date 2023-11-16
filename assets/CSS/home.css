@@ -111,3 +111,22 @@ a:hover{
     padding: 0px 8px;
 }
 
+#game-name {
+    font-style: italic;
+}
+
+#steam {
+    font-style: italic;
+}
+
+#deal {
+    font-style: italic;
+}
+
+#link1{
+    font-style: italic;
+}
+
+#link2{
+    font-style: italic;
+}
