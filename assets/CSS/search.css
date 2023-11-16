@@ -4,8 +4,7 @@ body {
     /* height: 100vh; */
     display: flex;
     flex-direction: column;
-    background-color: #1a1a1a;
-    color: white;
+    background-color: rgb(241, 241, 241);
     justify-content: space-around;
     /* align-items: center; */
 }
@@ -16,25 +15,14 @@ body {
     justify-content: space-around;
     /* padding: 5px; */
     min-width: 280px;
-    max-width: 1000px;
+    max-width: 1200px;
     margin: 0 auto;
     padding: 1.25rem;
-    gap: 0.5rem;
 }
 .gallery-item {
     text-align: center;
     margin-top: 1rem;
-    border: 2px solid #ddd;
-    transition: 0.3s ease, 0.3s ease;
-    background-color: #2a2a2a;
-    border-radius: 5px;
 }
-
-.gallery-item:hover {
-    transform: scale(1.05);
-    border-color: red;
-}
-
 
 .image-container {
     position: relative;
@@ -51,15 +39,6 @@ body {
     display: none; 
     justify-content: center;
     align-items: center;
-}
-
-a {
-    color: red;
-}
-
-a:hover{
-    color: white;
-    transform: scale(1.2);
 }
 
 .overlay-content {
@@ -79,6 +58,7 @@ a:hover{
     align-items: center;
 }
 .heart {
+    /* color: red; */
     color: lightslategray;
     margin-right: 1rem;
     cursor: pointer;
@@ -87,46 +67,15 @@ a:hover{
 .red-heart {
     color: red;
 }
-
-.heart:hover, .red-heart:hover {
-    transform: scale(1.2);
-    color: #ff6666; 
-}
-
 .savings {
-    font-style: bold;
     text-align: start;
-    padding: 0px 4px;
 }
 .prices {
     display: flex;
     flex-direction: row;
-    color: yellow;
-    padding: 0px 4px;
 }
 .normalPrice {
     text-decoration: line-through;
     margin-left: 5px;
-    color: red;
-    padding: 0px 8px;
-}
-
-#game-name {
-    font-style: italic;
-}
-
-#steam {
-    font-style: italic;
-}
-
-#deal {
-    font-style: italic;
-}
-
-#link1{
-    font-style: italic;
-}
-
-#link2{
-    font-style: italic;
+    color: gray;
 }
