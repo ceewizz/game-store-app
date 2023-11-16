@@ -19,18 +19,24 @@ body {
  
   }
   .navigation{
-    width: 400px;
+    width: 100vw;
     height: 70px;
-    background: white;
+    background: rgb(165, 165, 241);
     display: flex;
     justify-content: center;
     align-items: center;
-    border-radius: 10px;
-
+    border-top-right-radius: 60px;
+    border-top-left-radius: 60px;
+    position: sticky;
+    bottom: 0;
+    z-index: 100;
   }
   .navigation ul {
     display: flex;
     width: 350px;
+    display: flex;
+    justify-content: center;
+    padding-left: 0;
   }
   .navigation ul li {
     position: relative;
