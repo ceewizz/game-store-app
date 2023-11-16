@@ -20,7 +20,7 @@ class GalleryItem {
         return `
             <div class="gallery-item" data-steamid="${this.steamAppID}" data-gameid="${this.gameID}">
                 <div class="image-container">
-                    <img src="${this.thumb}" alt="${this.title}" onerror="missingImage(this)">
+                    <img src="${this.thumb}" alt="${this.title}">
                     <div class="overlay">
                         <div class="overlay-content">
                             <p id="game-name">${this.title}</p>
@@ -134,10 +134,11 @@ fetch("https://www.cheapshark.com/api/1.0/deals?storeID=1&sortBy=Metacritic&desc
         overlay()
         setFavorites()
         showHearts()
+        setInterval(fixBrokenImages, 5000);
     })
-    .then(
-        fixBrokenImages()
-    )
+    // .then(
+    //     fixBrokenImages()
+    // )
     .catch(error => {
         console.log('error', error);
     });
