@@ -2,6 +2,7 @@
 class GalleryItem {
     // Define properties for each instance.
     constructor(objectInArray) {
+        this.rawgImageUrl = objectInArray.rawgImageUrl;
         this.steamAppID = objectInArray.steamAppID;
         this.gameID = objectInArray.gameID;
         this.thumb = objectInArray.thumb;
@@ -20,7 +21,7 @@ class GalleryItem {
         return `
             <div class="gallery-item" data-steamid="${this.steamAppID}" data-gameid="${this.gameID}">
                 <div class="image-container">
-                    <img src="${this.thumb}" alt="${this.title}">
+                    <img src="${this.rawgImageUrl}" alt="${this.title}">
                     <div class="overlay">
                         <div class="overlay-content">
                             <p id="game-name">${this.title}</p>
