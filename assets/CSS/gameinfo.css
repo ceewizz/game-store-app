@@ -109,7 +109,7 @@ body {
   border-top-right-radius: 20px;
   box-shadow: 0px -10px 0px 0 var(--clr);
 }
-    
+ 
 @media only screen and (min-width: 450px) {
   .navigation {
   height: 100vh;
@@ -120,7 +120,7 @@ body {
    left: 0;
    bottom: 25%;
    right: 0;
-   display: auto;
+   display: relative;
    border-style: groove solid;
    
   
