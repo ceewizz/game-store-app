@@ -110,7 +110,7 @@ function showHearts() {
     let favorites = JSON.parse(localStorage.getItem('favorites')) || [];
     $('.gallery-item').each(function() {
         let steamID = $(this).data('steamid');
-        console.log(steamID);
+        // console.log(steamID);
         if (favorites.includes(steamID)) {
             $(this).find('.heart').addClass('red-heart');
         }
@@ -120,6 +120,7 @@ function showHearts() {
 fetch("http://localhost:3000/deals", requestOptions)
     .then(res => res.json())
     .then(data => {
+        console.log(data);
         localStorage.setItem('dealsData', JSON.stringify(data));
         data.forEach(objectInArray => {
             let galleryItem = new GalleryItem(objectInArray);
@@ -139,6 +140,14 @@ fetch("http://localhost:3000/deals", requestOptions)
     // .then(
     //     fixBrokenImages()
     // )
+    .catch(error => {
+        console.log('error', error);
+    });
+fetch("http://localhost:3000/rawg")
+    .then(res => res.json())
+    .then(data => {
+        console.log(data);
+    })
     .catch(error => {
         console.log('error', error);
     });
