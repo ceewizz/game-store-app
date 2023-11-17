@@ -1,10 +1,45 @@
+/*
 @import url('https://fonts.googleapis.com/css2?family=Kay+Pho+Du:wght@500&family=Poppins:ital,wght@0,200;1,200&display=swap');
 *
-{
+*/
+.menubar {
+  width:max-content; /* width */
+  height: max-content;
+  position: fixed;
+  top: 40%;
+  bottom:0;
+  left:0;
+  right:0;
+  background-color: blueviolet; /* background */
+}
+
+
+
+.menubar a {
+  display:block; /* side-by-side links */
+  overflow:auto; /* display */
+  position:relative; /* position */
+  text-align: center; /* Center-aliging text */
+  padding: 16px; /* Adding some padding */
+  transition: all 0.2s ease; /* Add transition effects */
+  color: white; /* text color */
+  font-size: 36px; /* font-size */
+
+}
+.menubar a:hover {
+  background-color: greenyellow; /* hover color */
+}
+
+.active {
+  background-color:teal; /* active/current color */
+}
+  /*
   margin:0;
   padding:0;
   box-sizing: border-box;
-
+}
+*/
+/*
 }
 body {
   background-image: linear-gradient(60deg, rgb(187,250,187), rgb(133,252,196));
@@ -14,24 +49,23 @@ body {
   background: var(--clr);
   justify-content: center;
 
- 
-  }
+ */
+  
+  /*
 :root{
   --clr: #222327;
 }
+*/
 
-  .navigation{
-    width: 100vw;
-    height: 70px;
-    background: rgb(165, 165, 241);
+ 
+   /*
     display:flex;
     justify-content: center;
     align-items: center;
-    border-top-right-radius: 60px;
-    border-top-left-radius: 60px;
+    
     position: absolute;
     bottom: 0;
-    z-index: 100;
+    z-index: 50;
  
   }
   .navigation ul {
@@ -61,6 +95,20 @@ body {
   .navigation ul li
    a .icon  {
     position: relative;
+    display: block;
+    line-height: 75px;
+    font-size: 1.5em;
+    width: 100%;
+    text-align:center;
+    transition: 0.5s;
+    color: var(--clr);
+  }
+  
+  .navigation ul li
+   a .icon  {
+    float: left;
+    width: 20%;
+    
     display: block;
     line-height: 75px;
     font-size: 1.5em;
@@ -109,26 +157,30 @@ body {
   border-top-right-radius: 20px;
   box-shadow: 0px -10px 0px 0 var(--clr);
 }
- 
+*/
+
+ /*
 @media only screen and (min-width: 450px) {
   .navigation {
-  height: 100vh;
-  width: 15vw;
+  width: 100%;
+  overflow: auto;
+  float: center;
+  display: block;
+  text-align:center;
+
   
-   position: flex;
-   top: 0;
-   left: 0;
-   bottom: 25%;
-   right: 0;
-   display: relative;
-   border-style: groove solid;
+
    
   
   }
-  .navigation ul {
-    display:flex;
-    flex-direction: column;
-  }
 }
 
-  
+  */
+  @media only screen and (max-width: 767px) {
+    .menubar {
+      display: block;
+     position: relative;
+     width: 100%; 
+     
+  }
+}
