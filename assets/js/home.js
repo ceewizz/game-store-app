@@ -52,12 +52,11 @@ let requestOptions = {
     method: 'GET',
     redirect: 'follow'
 };
+
 // Check if storedFavorites exists and is not null. Initialize favorites array to allow steam ID retrieval and storage. 
 let storedFavorites = localStorage.getItem('favorites');
 let favorites = storedFavorites && storedFavorites !== "null" ? JSON.parse(storedFavorites) : [];
-// Check if storedFavorites exists and is not null. Initialize favorites array to allow steam ID retrieval and storage. 
-let storedGameIds = localStorage.getItem('gameids');
-let gameIds = storedGameIds && storedGameIds !== "null" ? JSON.parse(storedGameIds) : [];
+
 // Overlay with links (Need to keep referer to comply with cheapshark API). Due to sanitizing, HTML attributes are added after HTML sanitation.
 function overlay() {
     $('.gallery').on('click', '.image-container', function(event) {
@@ -73,28 +72,37 @@ function overlay() {
         $(this).hide();
     });
 }
-// Set heart toggling. Add an remove favorites from local storage.
-function setFavorites() {
+// Set heart toggling. Add and remove favorites from local storage.
+function setFavorites(deals) {
     $('.gallery').on('click', '.heart', function(event) {
         event.stopPropagation();
         $(this).toggleClass('red-heart');
-        let steamID = $(this).closest('.gallery-item').data('steamid');
-        let index = favorites.indexOf(steamID);
-        if (index === -1) {
-            favorites.push(steamID);
-        } else {
-            favorites.splice(index, 1);
-        }
-        localStorage.setItem('favorites', JSON.stringify(favorites));
-        // Game ID's
+
         let gameID = $(this).closest('.gallery-item').data('gameid');
-        let indexGameId = gameIds.indexOf(gameID);
-        if (indexGameId === -1) {
-            gameIds.push(gameID);
-        } else {
-            gameIds.splice(index, 1);
+        let gameData = {};
+        let gameIndex = -1;
+
+        // Checks favorites to see if game is listed.
+        for (let i = 0; i < favorites.length; i++) {
+            if (favorites[i].gameID == gameID) {
+                gameIndex = i;
+                break;
+            }
         }
-        localStorage.setItem('gameids', JSON.stringify(gameIds));
+
+        if (gameIndex === -1) {
+            for (let i = 0; i < deals.length; i++) {
+                if (deals[i].gameID == gameID) {
+                    Object.assign(gameData, deals[i]);
+                    favorites.push(gameData);
+                    break;
+                }
+            }
+        } else {
+            favorites.splice(gameIndex, 1);
+        }
+
+        localStorage.setItem('favorites', JSON.stringify(favorites));
     });
 }
 // Check for broken links (HTML image elements).
@@ -107,12 +115,14 @@ function fixBrokenImages() {
 }
 // Display favoite games as "hearted".
 function showHearts() {
-    let favorites = JSON.parse(localStorage.getItem('favorites')) || [];
     $('.gallery-item').each(function() {
         let steamID = $(this).data('steamid');
-        console.log(steamID);
-        if (favorites.includes(steamID)) {
-            $(this).find('.heart').addClass('red-heart');
+        // console.log(steamID);
+        for (let i = 0; i < favorites.length; i++) {
+            if (favorites[i].steamAppID == steamID) {
+                $(this).find('.heart').addClass('red-heart');
+                break;
+            }
         }
     });
 }
@@ -130,9 +140,14 @@ fetch("https://www.cheapshark.com/api/1.0/deals?storeID=1&sortBy=Metacritic&desc
             // console.log(galleryItemHtmlClean);
             $('.gallery').append(galleryItemHtmlClean);
         });
+
+        // Check if storedDealsData exists and is not null. Initialize dealsData array to allow steam ID retrieval and storage. (Must be called after data is fetched)
+        let storedDealsData = localStorage.getItem('dealsData');
+        let dealsData = storedDealsData && storedDealsData !== "null" ? JSON.parse(storedDealsData) : [];
+
         // Event delegation for dynamic content.
         overlay()
-        setFavorites()
+        setFavorites(dealsData)
         showHearts()
         setInterval(fixBrokenImages, 5000);
     })
