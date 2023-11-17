@@ -1,13 +1,37 @@
+@import url('https://fonts.googleapis.com/css2?family=Kdam+Thmor+Pro&display=swap');
+
+@import url('https://fonts.googleapis.com/css2?family=Black+Ops+One&display=swap');
+
+:root {
+    --first-color: #000000;
+    --second-color: #323232;
+    --third-color: #ff1e56;
+    --fourth-color: #ffac41;
+}
+
 body {
     margin: 0;
     font-family: Arial, sans-serif;
     /* height: 100vh; */
     display: flex;
     flex-direction: column;
-    background-color: #1a1a1a;
+    background: linear-gradient(45deg, var(--first-color), var(--second-color));
+    background-size: 400% 400%;
     color: white;
     justify-content: space-around;
     /* align-items: center; */
+    animation: gradientBG 15s ease infinite;
+}
+@keyframes gradientBG {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
 }
 .gallery {
     display: flex;
@@ -32,7 +56,8 @@ body {
 
 .gallery-item:hover {
     transform: scale(1.05);
-    border-color: red;
+    border-color: var(--fourth-color);
+    box-shadow: 0 0 15px var(--third-color)(255, 0, 0, 0.6);
 }
 
 
@@ -68,9 +93,13 @@ a:hover{
 }
 
 .gallery-item img {
-    width: 165px;
-    height: 165px;
+    width: 175px;
+    height: 175px;
     border-radius: 5px; 
+    transition: box-shadow 0.3s ease-in-out;
+}
+.gallery-item img:hover {
+    box-shadow: 0 0 40px var(--fourth-color)(0, 0, 0, 0.5); 
 }
 .item-footer {
     display: flex;
@@ -101,26 +130,30 @@ a:hover{
 .prices {
     display: flex;
     flex-direction: row;
-    color: yellow;
+    color: var(--fourth-color);
     padding: 0px 4px;
 }
 .normalPrice {
     text-decoration: line-through;
     margin-left: 5px;
-    color: red;
-    padding: 0px 8px;
+    color: var(--third-color);
+    padding: 0px 5px;
 }
 
 #game-name {
-    font-style: italic;
+    font-family: 'Kdam Thmor Pro', sans-serif;
+    font-style: bold;
+    font-size: 18px;
 }
 
 #steam {
-    font-style: italic;
+    font-family: 'Black Ops One', cursive;
+    font-style: italic bold;
 }
 
 #deal {
-    font-style: italic;
+    font-family: 'Black Ops One', cursive;
+    font-style: italic bold;
 }
 
 #link1{
