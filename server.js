@@ -89,6 +89,6 @@ function generateRawgUrls(titlesThatNeedImages) {
 //   });
 //   console.log(rawgImageUrlArray);
 //   return rawgImageUrlArray;
-// }
+//// }
 // Set up express server.
 app.listen(PORT, () => console.log(`Now listening on ${PORT}`));
