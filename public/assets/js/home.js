@@ -134,7 +134,7 @@ function showHearts() {
 fetch("https://game-bargains.onrender.com/deals", requestOptions)
     .then(res => res.json())
     .then(data => {
-        console.log(data);
+        // console.log(data);
         localStorage.setItem('dealsData', JSON.stringify(data));
         data.forEach(objectInArray => {
             let galleryItem = new GalleryItem(objectInArray);
