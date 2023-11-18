@@ -61,6 +61,12 @@ Jarrett Delaney
 Icons used for this project:
 https://fontawesome.com/icons
 
+CORS solution:
+https://www.youtube.com/watch?v=4KHiSt0oLJ0
+
+Making multiple fetch calls with promise.all:
+https://www.youtube.com/watch?v=gwY5wMe7Xbw&t=110s
+
 ## License
 
 Default
