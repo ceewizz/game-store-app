@@ -29,9 +29,9 @@ app.get('/deals', async (req, res) => {
     const titlesThatNeedImages = await makeTitlesArray(dealsData);
     const urlsGenerated = await generateRawgUrls(titlesThatNeedImages);
     const rawgImageUrls = await getRawgImageUrl(urlsGenerated)
-    console.log(rawgImageUrls);
+    // console.log(rawgImageUrls);
     const dealsDataWithRawg = await addRawgToDeals(rawgImageUrls, dealsData)
-    console.log(dealsDataWithRawg);
+    // console.log(dealsDataWithRawg);
     res.json(dealsDataWithRawg);
   } catch (error) {
     console.error('Error:', error);
@@ -39,19 +39,19 @@ app.get('/deals', async (req, res) => {
   }
 });
 // Test rawg response.
-app.get('/rawg', (req, res) => {
-const rawgUrl = `https://api.rawg.io/api/games?search=The%20Witcher%203%3A%20Wild%20Hunt&key=${process.env.RAWG_API_KEY}`;
-fetch(rawgUrl)
-    .then(response => response.json())
-    .then(data => {
-      res.json(data);
-      console.log(data);
-    })
-    .catch(error => {
-      console.error('Error:', error);
-      res.status(!200).send(error);;
-    });
-});
+// app.get('/rawg', (req, res) => {
+// const rawgUrl = `https://api.rawg.io/api/games?search=The%20Witcher%203%3A%20Wild%20Hunt&key=${process.env.RAWG_API_KEY}`;
+// fetch(rawgUrl)
+//     .then(response => response.json())
+//     .then(data => {
+//       res.json(data);
+//       console.log(data);
+//     })
+//     .catch(error => {
+//       console.error('Error:', error);
+//       res.status(!200).send(error);;
+//     });
+// });
 // For each game on sale returned by the cheapshark API, push the title into an array.
 function makeTitlesArray(data) {
   const titleArray = [];
@@ -65,9 +65,9 @@ function generateRawgUrls(titlesThatNeedImages) {
   const rawgUrlArray = []
   titlesThatNeedImages.forEach(titleInArray => {
     const encodedTitle = encodeURIComponent(titleInArray);
-    console.log(encodedTitle);
+    // console.log(encodedTitle);
     const rawgUrl = `https://api.rawg.io/api/games?search=${encodedTitle}&key=${process.env.RAWG_API_KEY}`;
-    console.log(rawgUrl);
+    // console.log(rawgUrl);
     rawgUrlArray.push(rawgUrl);
   });
   return rawgUrlArray;
