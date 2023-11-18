@@ -26,8 +26,8 @@ app.get('/deals', async (req, res) => {
   try {
     const cheapSharkResponse = await fetch(cheapSharkUrl);
     const dealsData = await cheapSharkResponse.json();
-    const titlesThatNeedImages = makeTitlesArray(dealsData);
-    const urlsGenerated = generateRawgUrls(titlesThatNeedImages);
+    const titlesThatNeedImages = await makeTitlesArray(dealsData);
+    const urlsGenerated = await generateRawgUrls(titlesThatNeedImages);
     const rawgImageUrls = await getRawgImageUrl(urlsGenerated)
     // console.log(rawgImageUrls);
     const dealsDataWithRawg = await addRawgToDeals(rawgImageUrls, dealsData)
