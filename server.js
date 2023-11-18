@@ -22,7 +22,7 @@ app
   }))
 // Get cheapshark API deals, generate API requests to RAWG, attach images to cheapshark data. Needs to be async due to all of the fetch requests being made. 
 app.get('/deals', async (req, res) => {
-  const cheapSharkUrl = 'https://www.cheapshark.com/api/1.0/deals?storeID=1&sortBy=Metacritic&desc=0&onSale=1&pageSize=60';
+  const cheapSharkUrl = 'https://www.cheapshark.com/api/1.0/deals?storeID=1&sortBy=Metacritic&desc=0&onSale=1&pageSize=6';
   try {
     const cheapSharkResponse = await fetch(cheapSharkUrl);
     const dealsData = await cheapSharkResponse.json();
