@@ -18,10 +18,10 @@ app
   .use(express.urlencoded({ extended: true }))
   .use(express.static(path.join(__dirname, 'public')))
   .use(cors({
-    origin: 'https://game-bargains.onrender.com'
+    origin: 'https://game-bargains.onrender.com/index.html'
   }))
 // Get cheapshark API deals, generate API requests to RAWG, attach images to cheapshark data. Needs to be async due to all of the fetch requests being made. 
-app.get('/', async (req, res) => {
+app.get('/deals', async (req, res) => {
   const cheapSharkUrl = 'https://www.cheapshark.com/api/1.0/deals?storeID=1&sortBy=Metacritic&desc=0&onSale=1&pageSize=3';
   try {
     const cheapSharkResponse = await fetch(cheapSharkUrl);
