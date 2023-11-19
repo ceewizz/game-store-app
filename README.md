@@ -10,11 +10,11 @@ This project is a video game app that searches for savings based on the top 60 g
 ## How to run this project
 
 <!-- Need to add actual demo photo -->
-![Game Store App - demo](<assets/images/weather dashboard - demo.png>)
+![Game Store App - demo](<assets/images/game store app - demo.png>)
 
 <!-- Need to add actual URL -->
 Click this link to visit the site:
-[Game Store App](https://kiyodosan.github.io/UCI-BOOTCAMP-WEEK-6-WEATHER-DASHBOARD/)
+[Game Store App](#)
 
 After clicking on the link above, you will be presented with the game store home page.
 
@@ -54,8 +54,11 @@ Game Listed
 ## Credits
 
 Jorge Duarte
+
 Tyler Odo
+
 Chris Huynh
+
 Jarrett Delaney
 
 Icons used for this project:
