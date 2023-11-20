@@ -1,15 +1,11 @@
 .menubar {
-  width:max-content; /* width */
+  width: max-content; /* width */
   height: max-content;
   position: fixed;
-  top: 40%;
-  bottom:0;
+  bottom: 50%;
   left:0;
-  right:0;
-  background-color: blueviolet; /* background */
+  background-color: gray; /* background */
 }
-
-
 
 .menubar a {
   display:block; /* side-by-side links */
@@ -20,22 +16,23 @@
   transition: all 0.2s ease; /* Add transition effects */
   color: white; /* text color */
   font-size: 36px; /* font-size */
-
 }
+
 .menubar a:hover {
   background-color: greenyellow; /* hover color */
 }
 
 .active {
-  background-color:teal; /* active/current color */
+  background-color:gray; /* active/current color */
 }
- 
 
-  @media only screen and (max-width: 767px) {
-    .menubar {
-      display: block;
-     position: relative;
-     width: 100%; 
-     
+@media screen and (max-width: 750px) {
+  .menubar {
+    display: flex;
+    justify-content: center;
+    bottom: 0;
+    width: 100%;
+    border-top-left-radius: 100%;
+    border-top-right-radius: 100%;
   }
 }
