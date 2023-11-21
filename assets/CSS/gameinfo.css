@@ -26,13 +26,21 @@
   background-color:gray; /* active/current color */
 }
 
-@media screen and (max-width: 1118px) {
+@media screen and (min-width: 751px) {
+  .menubar a {
+    outline: 2px solid lightgray;
+  }
+}
+
+@media screen and (max-width: 750px) {
   .menubar {
     display: flex;
     justify-content: center;
     bottom: 0;
     width: 100%;
-    border-top-left-radius: 100%;
-    border-top-right-radius: 100%;
+    border-top-left-radius: 50px;
+    border-top-right-radius: 50px;
+    /* border-top-left-radius: 100%; */
+    /* border-top-right-radius: 100%; */
   }
 }

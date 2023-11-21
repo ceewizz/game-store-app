@@ -1,5 +1,5 @@
 
-# Game Store App
+# Game Bargains
 
 ___
 
@@ -9,12 +9,10 @@ This project is a video game app that searches for savings based on the top 60 g
 
 ## How to run this project
 
-<!-- Need to add actual demo photo -->
-![Game Store App - demo](<assets/images/game store app - demo.png>)
+![Game Bargains - demo](<assets/images/game store app - demo.png>)
 
-<!-- Need to add actual URL -->
 Click this link to visit the site:
-[Game Store App](#)
+[Game Bargains](https://game-bargains.onrender.com/)
 
 After clicking on the link above, you will be presented with the game store home page.
 
@@ -69,6 +67,9 @@ https://www.youtube.com/watch?v=4KHiSt0oLJ0
 
 Making multiple fetch calls with promise.all:
 https://www.youtube.com/watch?v=gwY5wMe7Xbw&t=110s
+
+Animated gradient background CSS:
+https://youtu.be/-VOUK-xFAyk?feature=shared
 
 ## License
 
